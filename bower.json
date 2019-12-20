@@ -1,0 +1,20 @@
+{
+  "name": "fyiguy-renter-population",
+  "version": "0.0.1",
+  "homepage": "https://github.com/seattletimes/fyiguy-renter-population",
+  "authors": [
+    "The Seattle Times"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/js/lib",
+    "test",
+    "tests"
+  ]
+}

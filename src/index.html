@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>
+    <%= json.project.title %>
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Safari, you're the worst -->
+  <meta name='format-detection' content='telephone=no'>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <%= t.include("partials/_head.html") %>
+</head>
+
+<body>
+
+  <responsive-child class="map-container">
+    <div class="outmost">
+      <section class="chatter">
+        <h1>Lorem Ipsum</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat aliquam lectus vitae porttitor. Donec euismod sem dui, ac gravida sem mattis sed. Fusce porttitor accumsan sem elementum convallis. Nam id augue lobortis, laoreet magna non,
+          sodales risus. </p>
+      </section>
+
+      <div class="aspect-ratio-outer">
+        <div class="aspect-ratio-inner">
+          <leaflet-map zoom=10>
+            <tile-layer layer="cartoPositron"></tile-layer>
+          </leaflet-map>
+
+        </div>
+        <aside class="legend">
+          <h1>Map legend</h1>
+        <ul class="scale">
+          <li>
+          <span class="block" style="background-color: #d94801"></span> 80 - 100%</li>
+          <li>
+          <span class="block" style="background-color: #f16913"></span> 60 - 80%</li>  
+          <li>
+            <span class="block" style="background-color: #fd8d3c"></span> 40 - 60%</li>
+          <li>
+          <span class="block" style="background-color: #fdae6b"></span> 20 - 40%</li>
+          <li>
+          <span class="block" style="background-color: #fdd0a2"></span> 0 - 20% </li>
+        </ul>
+        </aside>
+      </div>
+
+
+      <div class="source">Source: Name of source
+        <span class="credit">Miranda Hardy / THE SEATTLE TIMES</div>
+    </div>
+  </responsive-child>
+
+  <script src="app.js"></script>
+  <% /*= t.include("partials/_foot.html"); */ %>
+    <%= t.include("partials/_workHere.html") %>
+</body>
+
+</html>
