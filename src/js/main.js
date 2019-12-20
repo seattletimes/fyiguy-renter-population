@@ -14,8 +14,10 @@ var templateFile = require("./_popup.html");
 ich.addTemplate("popup", templateFile);
 
 var onEachFeature = function(feature, layer) {
-  layer.bindPopup(ich.popup(feature.properties))
+  layer.bindPopup(ich.popup(feature.properties));
 };
+
+
 
 var data = require("./renterPercentage.geo.json");
 var commafy = s => (s*1).toLocaleString().replace(/1.0+$/, "");
@@ -35,10 +37,20 @@ if (mapElement) {
   map.scrollWheelZoom.disable();
 
   var onEachFeature = function(feature, layer) {
-  	layer.bindPopup(ich.popup(feature.properties))
+    var fullTractName = feature["properties"]["areaName"];
+
+    if(fullTractName != null){
+    var tractName = fullTractName.split(",");
+    feature["properties"]["areaName"] = tractName[0];
+    }
+    
+    layer.bindPopup(ich.popup(feature.properties))
+    // console.log(feature.properties);
+
     var focused = false;
     var popup = false;
-     
+
+
     layer.on({
         mouseover: function(e) {
             layer.setStyle({ weight: 2.5, fillOpacity: .7 });
@@ -50,6 +62,18 @@ if (mapElement) {
         },
         popupopen: function(e) {
             layer.setStyle({ weight: 2, fillOpacity: 1 });
+
+            var barRenter = document.querySelector(".bar--renter");
+            var barOwner = document.querySelector(".bar--owner");
+          
+            var renter = e["target"]["feature"]["properties"]["percentRenter"];
+            var owner = 1 - renter;
+          
+            barRenter.style.width = (renter*100).toString() + "%";
+            barRenter.title = (renter*100).toString() + "%";
+
+            barOwner.style.width = (owner*100).toString() + "%";
+
             focused = true;
             popup = true;
         },
@@ -59,7 +83,9 @@ if (mapElement) {
             popup = false;
         }
     });
+
 };
+
 
 var getColor = function(d) {
     var value = d;
@@ -82,7 +108,7 @@ var getColor = function(d) {
   var style = function(feature) {
     var s = {
       fillColor: getColor(feature.properties.percentRenter),
-      weight: 1.25,
+      weight: 1,
       opacity: .3,
       color: '#000',
       fillOpacity: 0.45
@@ -98,3 +124,14 @@ var getColor = function(d) {
 
   
  map.scrollWheelZoom.disable();
+
+//  var onClick = function(e){
+//   var barRenter = document.querySelector(".bar--renter");
+//   var barOwner = document.querySelector(".bar--owner");
+
+//   var renter = e["target"]["feature"]["properties"]["percentRenter"];
+//   var owner = 1 - renter;
+
+//   barRenter.style.width = (renter*100).toString() + "%";
+//   barOwner.style.width = (owner*100).toString() + "%";
+//  }

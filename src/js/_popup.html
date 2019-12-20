@@ -2,11 +2,19 @@
 
 
   <h2 class="bigheader">{{areaName}}</h2>
-    <ul>
-      <li> Total Population: {{totalPop}}
-      <li> Owner Population: {{ownerPop}}
-      <li> Renter Population: {{renterPop}}
-      <li> Percent Renter: {{percentRenterDisplay}}%
-    </ul>
 
+  <h2 class="mediumheader">Percent Renter: {{percentRenterDisplay}}%</h2>
+  <p>Total Population: {{totalPop}}</p>
+  <p><span class="block block-rent" style="font-size: 20px; width: 10px;color: #008000">&#x25A0 </span>Renter Population: {{renterPop}}</p>
+  <p><span class="block block-own" style="font-size: 20px; width: 10px;color: #38B0DE">&#x25A0 </span>Owner Population: {{ownerPop}}</p>
+       
+       
+       
+    
+</div>
+<div class="bar-container">
+<div class="bar">
+  <div class="bar--renter" title=""></div>
+  <div class="bar--owner"></div>
+</div>
 </div>
