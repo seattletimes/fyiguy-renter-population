@@ -5,7 +5,7 @@
       "path": "humble-server"
     },
     "live": {
-      "bucket": "",
+      "bucket": "projects.seattletimes.com",
       "path": ""
     }
   },

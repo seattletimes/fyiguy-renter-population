@@ -17,8 +17,6 @@ var onEachFeature = function(feature, layer) {
   layer.bindPopup(ich.popup(feature.properties));
 };
 
-
-
 var data = require("./renterPercentage.geo.json");
 var commafy = s => (s*1).toLocaleString().replace(/1.0+$/, "");
 
@@ -63,6 +61,11 @@ if (mapElement) {
         popupopen: function(e) {
             layer.setStyle({ weight: 2, fillOpacity: 1 });
 
+           
+
+            focused = true;
+            popup = true;
+
             var barRenter = document.querySelector(".bar--renter");
             var barOwner = document.querySelector(".bar--owner");
           
@@ -70,12 +73,10 @@ if (mapElement) {
             var owner = 1 - renter;
           
             barRenter.style.width = (renter*100).toString() + "%";
-            barRenter.title = (renter*100).toString() + "%";
+            barRenter.title = (renter*100).toFixed(2).toString() + "%";
 
-            barOwner.style.width = (owner*100).toString() + "%";
-
-            focused = true;
-            popup = true;
+            barOwner.style.width = (owner*100).toFixed(2).toString() + "%";
+            barOwner.title = (owner*100).toFixed(2).toString() + "%";
         },
         popupclose: function(e) {
             layer.setStyle({ weight: 0.5, fillOpacity: 0.4 });
@@ -93,11 +94,11 @@ var getColor = function(d) {
       value = Number(value.replace(/,/, ""));
     }
     if (typeof value != "undefined") {
-     return value >= .8 ? '#7f2704' :
-     		value >= .6 ? '#d94801' :
-     		value >= .4 ? '#f16913' :
+     return value >= .8 ? '#a03909' :
+     		value >= .6 ? '#d35303' :
+     		value >= .4 ? '#f18131' :
         value >= .2 ? '#fdae6b' :
-        value >= 0 ? '#fee6ce' :
+        value >= 0 ? '#ffd6ae' :
              
              '#f1f2f2' ;
     } else {
@@ -122,7 +123,7 @@ var getColor = function(d) {
   }).addTo(map);
 }
 
-  
+
  map.scrollWheelZoom.disable();
 
 //  var onClick = function(e){
