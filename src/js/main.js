@@ -9,9 +9,9 @@ var L = element.leaflet;
 var map = element.map;
 
 //ICH code for popup template if needed----------
-var ich = require("icanhaz");
-var templateFile = require("./_popup.html");
-ich.addTemplate("popup", templateFile);
+// var ich = require("icanhaz");
+// var templateFile = require("./_popup.html");
+// ich.addTemplate("popup", templateFile);
 
 
 var data = require("./renterPercentage.geo.json");
@@ -31,7 +31,7 @@ if (mapElement) {
   var L = mapElement.leaflet;
   var map = mapElement.map;
 
-  // map.scrollWheelZoom.disable();
+  map.scrollWheelZoom.disable();
 
   var onEachFeature = function(feature, layer) {
     var fullTractName = feature["properties"]["areaName"];
@@ -43,31 +43,31 @@ if (mapElement) {
     
     var rent = feature.properties.percentRenter;
     var own = 1 - rent;
-    var templateContent = feature.properties;
-    templateContent.rentWidth = "style= width:" + (rent*100).toString() + "%;";
-    templateContent.ownWidth = "style=width:" + (own*100).toString() + "%;";
-    templateContent.rentTitle = "title = " + (rent*100).toFixed(1).toString() + "%";
-    templateContent.ownTitle = "title = " + (own*100).toFixed(1).toString() + "%";
+    // var templateContent = feature.properties;
+    // templateContent.rentWidth = "style= width:" + (rent*100).toString() + "%;";
+    // templateContent.ownWidth = "style=width:" + (own*100).toString() + "%;";
+    // templateContent.rentTitle = "title = " + (rent*100).toFixed(1).toString() + "%";
+    // templateContent.ownTitle = "title = " + (own*100).toFixed(1).toString() + "%";
 
 
-// layer.bindPopup(`
-//   <div class="popuptext">
-//     <h2 class="popheader big">`+ feature["properties"]["areaName"] + `</h2>
-//     <h2 class="popheader">Renters: `+ feature["properties"]["percentRenterDisplay"] +`%</h2>
-//     <p>Total population: `+ feature["properties"]["totalPop"] +`</p>
-//     <p><span class="block block-rent" style="font-size: 20px; width: 12px;color: #a03909">&#x25A0 </span>Renter population: `+ feature["properties"]["renterPop"] +`</p>
-//     <p><span class="block block-own" style="font-size: 20px; width: 12px;color: #909090	">&#x25A0 </span>Owner population: `+ feature["properties"]["ownerPop"] +`</p>
-//   </div>
-//   <div class="bar-container">
-//     <div class="bar">
-//       <div class="bar--renter" title="` + (rent*100).toFixed(1).toString() +`%" width="`+ (rent*100).toString() +`%"></div>
-//       <div class="bar--owner" title="`(own*100).toFixed(1).toString()`%" width="`+ (own*100).toString() +`%"></div>
-//     </div>
-//   </div>
-// `);
+layer.bindPopup(`
+  <div class="popuptext">
+    <h2 class="popheader big">`+ feature["properties"]["areaName"] + `</h2>
+    <h2 class="popheader">Renters: `+ feature["properties"]["percentRenterDisplay"] +`%</h2>
+    <p>Total population: `+ feature["properties"]["totalPop"] +`</p>
+    <p><span class="block block-rent" style="font-size: 20px; width: 12px;color: #a03909">&#x25A0 </span>Renter population: `+ feature["properties"]["renterPop"] +`</p>
+    <p><span class="block block-own" style="font-size: 20px; width: 12px;color: #909090	">&#x25A0 </span>Owner population: `+ feature["properties"]["ownerPop"] +`</p>
+  </div>
+  <div class="bar-container">
+    <div class="bar">
+      <div class="bar--renter" title="` + (rent*100).toFixed(1).toString() +`%" style="width:`+ (rent*100).toString() +`%"></div>
+      <div class="bar--owner" title="`+ (own*100).toFixed(1).toString() + `%" style="width:`+ (own*100).toString() +`%"></div>
+    </div>
+  </div>
+`);
 
 
-    layer.bindPopup(ich.popup(templateContent));
+    // layer.bindPopup(ich.popup(templateContent));
 
     var focused = false;
     var popup = false;
@@ -88,6 +88,7 @@ if (mapElement) {
             popup = true;
         },
         popupclose: function(e) {
+
             layer.setStyle({ weight: 0.5, fillOpacity: 0.4 });
             focused = false;
             popup = false;
