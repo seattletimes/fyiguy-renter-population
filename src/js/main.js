@@ -38,35 +38,25 @@ if (mapElement) {
     
     var rent = feature.properties.percentRenter;
     var own = 1 - rent;
-    // var templateContent = feature.properties;
-    // templateContent.rentWidth = "style= width:" + (rent*100).toString() + "%;";
-    // templateContent.ownWidth = "style=width:" + (own*100).toString() + "%;";
-    // templateContent.rentTitle = "title = " + (rent*100).toFixed(1).toString() + "%";
-    // templateContent.ownTitle = "title = " + (own*100).toFixed(1).toString() + "%";
 
-
-layer.bindPopup(`
-  <div class="popuptext">
-    <h2 class="popheader big">`+ feature["properties"]["areaName"] + `</h2>
-    <h2 class="popheader">Renters: `+ feature["properties"]["percentRenterDisplay"] +`%</h2>
-    <p>Total population: `+ feature["properties"]["totalPop"] +`</p>
-    <p><span class="block block-rent" style="font-size: 20px; width: 12px;color: #a03909">&#x25A0 </span>Renter population: `+ feature["properties"]["renterPop"] +`</p>
-    <p><span class="block block-own" style="font-size: 20px; width: 12px;color: #909090	">&#x25A0 </span>Owner population: `+ feature["properties"]["ownerPop"] +`</p>
-  </div>
-  <div class="bar-container">
-    <div class="bar">
-      <div class="bar--renter" title="` + (rent*100).toFixed(1).toString() +`%" style="width:`+ (rent*100).toString() +`%"></div>
-      <div class="bar--owner" title="`+ (own*100).toFixed(1).toString() + `%" style="width:`+ (own*100).toString() +`%"></div>
-    </div>
-  </div>
-`);
-
-
-    // layer.bindPopup(ich.popup(templateContent));
+    layer.bindPopup(`
+      <div class="popuptext">
+        <h2 class="popheader big">`+ feature["properties"]["areaName"] + `</h2>
+        <h2 class="popheader">`+ feature["properties"]["percentRenterDisplay"] +`% renters</h2>
+        <p class="total">Total population: `+ feature["properties"]["totalPop"] +`</p>
+        <p><span class="block block-rent">&#x25A0 </span>Renter population: `+ feature["properties"]["renterPop"] +`</p>
+        <p><span class="block block-own">&#x25A0 </span>Owner population: `+ feature["properties"]["ownerPop"] +`</p>
+      </div>
+      <div class="bar-container">
+        <div class="bar">
+          <div class="bar--renter" title="` + (rent*100).toFixed(1).toString() +`%" style="width:`+ (rent*100).toString() +`%"></div>
+          <div class="bar--owner" title="`+ (own*100).toFixed(1).toString() + `%" style="width:`+ (own*100).toString() +`%"></div>
+        </div>
+      </div>
+    `);
 
     var focused = false;
     var popup = false;
-
 
     layer.on({
         mouseover: function(e) {
@@ -89,7 +79,6 @@ layer.bindPopup(`
             popup = false;
         }
     });
-
 };
 
 var getColor = function(d) {
@@ -103,8 +92,7 @@ var getColor = function(d) {
      		value >= .4 ? '#41b6c4' :
         value >= .2 ? '#a1dab4' :
         value >= 0 ? '#ffffcc' :
-             
-             '#f1f2f2' ;
+                    '#f1f2f2' ;
     } else {
       return "gray"
     }

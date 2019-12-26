@@ -1,4 +1,6 @@
 @import "seattletimes";
+@import "popup";
+
 @aspect-ratio: 7/10;
 @legend-length: 5; //number of legend items
 body {
@@ -38,19 +40,6 @@ body {
 .map-container {
   position: relative;
 }
-.big{
-  text-transform: uppercase;
-}
-.popheader {
-  text-align: center;
-  font-size: 16px;
-  margin: 0 0 6px 0 ;
-  @media @tablet {
-    font-size: 13px;
-  }
-
-
-}
 
 
 .chatter {
@@ -66,4 +55,3 @@ body {
 }
 @import "leaflet-tweaks";
 @import "legend";
-@import "popup";
