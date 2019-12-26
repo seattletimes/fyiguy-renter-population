@@ -8,17 +8,12 @@ var element = document.querySelector("leaflet-map");
 var L = element.leaflet;
 var map = element.map;
 
-//ICH code for popup template if needed----------
-// var ich = require("icanhaz");
-// var templateFile = require("./_popup.html");
-// ich.addTemplate("popup", templateFile);
-
-
 var data = require("./renterPercentage.geo.json");
 var commafy = s => (s*1).toLocaleString();
 
 var cats = ["totalPop", "ownerPop", "renterPop"];
 
+//commafy data for popup text
 for (var x = 0; x < data.features.length; x++){
   for(var y = 0; y < cats.length; y++){
     data.features[x].properties[cats[y]] = commafy(data.features[x].properties[cats[y]]);
