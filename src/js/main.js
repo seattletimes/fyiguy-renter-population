@@ -1,6 +1,6 @@
 //load our custom elements
 require("component-leaflet-map");
-require("component-responsive-frame");
+// require("component-responsive-frame");
 
 
 //get access to Leaflet and the map
@@ -39,22 +39,22 @@ if (mapElement) {
     var rent = feature.properties.percentRenter;
     var own = 1 - rent;
 
-    layer.bindPopup(`
-      <div class="popuptext">
-        <h2 class="popheader big">`+ feature["properties"]["areaName"] + `</h2>
-        <h2 class="popheader">`+ feature["properties"]["percentRenterDisplay"] +`% renters</h2>
-        <p class="total">Total population: `+ feature["properties"]["totalPop"] +`</p>
-        <p><span class="block block-rent">&#x25A0 </span>Renter population: `+ feature["properties"]["renterPop"] +`</p>
-        <p><span class="block block-own">&#x25A0 </span>Owner population: `+ feature["properties"]["ownerPop"] +`</p>
-      </div>
-      <div class="bar-container">
-        <div class="bar">
-          <div class="bar--renter" title="` + (rent*100).toFixed(1).toString() +`%" style="width:`+ (rent*100).toString() +`%"></div>
-          <div class="bar--owner" title="`+ (own*100).toFixed(1).toString() + `%" style="width:`+ (own*100).toString() +`%"></div>
+      layer.bindPopup(`
+        <div class="popuptext">
+          <h2 class="popheader big">`+ feature["properties"]["areaName"] + `</h2>
+          <h2 class="popheader">`+ feature["properties"]["percentRenterDisplay"] +`% renters</h2>
+          <p class="total">Total population: `+ feature["properties"]["totalPop"] +`</p>
+          <p><span class="block block-rent">&#x25A0 </span>Renter population: `+ feature["properties"]["renterPop"] +`</p>
+          <p><span class="block block-own">&#x25A0 </span>Owner population: `+ feature["properties"]["ownerPop"] +`</p>
         </div>
-      </div>
-    `);
-
+        <div class="bar-container">
+          <div class="bar">
+            <div class="bar--renter" title="` + (rent*100).toFixed(1).toString() +`%" style="width:`+ (rent*100).toString() +`%"></div>
+            <div class="bar--owner" title="`+ (own*100).toFixed(1).toString() + `%" style="width:`+ (own*100).toString() +`%"></div>
+          </div>
+        </div>
+      `);
+      
     var focused = false;
     var popup = false;
 
@@ -87,7 +87,8 @@ var getColor = function(d) {
       value = Number(value.replace(/,/, ""));
     }
     if (typeof value != "undefined") {
-     return value >= .8 ? '#253494' :
+     return value >= 1 ? '#303030': 
+        value >= .8 ? '#253494' :
      		value >= .6 ? '#2c7fb8' :
      		value >= .4 ? '#41b6c4' :
         value >= .2 ? '#a1dab4' :
