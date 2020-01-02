@@ -14,30 +14,35 @@
   }
   .popheader {
     font-size: 16px;
-    margin: 0 0 6px 0 ;
+    margin: 0 0 4px 0 ;
     @media @tablet {
       font-size: 13px;
     }
   }
   .total{
-    border-bottom: 1px solid black;
-    margin-bottom: 8px;
-    padding-bottom: 4px;
+    font-size: 14px;
+    margin-top: 6px;
+    padding-top: 2px;
+    border-top: 1px solid black;
   }
+}
+
+.renter-pop{
+  color: black;
 }
 
 .bar-container{
   width: 100%;
+  .rent{
+    margin-bottom: 8px;
+  }
   .bar{
     width: 100%;
     height: 20px;
     display: flex;
-    margin: 10px 0;
     div{
-      &:hover{
-      border: 1.5px solid black;
-      }
       height: 15px;
+      margin-right: 3px;
     }
     .bar--renter{
       background-color: #253494;
@@ -46,6 +51,11 @@
       background-color: #d4d1d1;	
     }
   }
+}
+
+.popsmall{
+  font-size: 14px;
+  line-height: 1;
 }
 
 .block{

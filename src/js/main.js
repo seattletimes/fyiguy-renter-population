@@ -39,21 +39,26 @@ if (mapElement) {
     var rent = feature.properties.percentRenter;
     var own = 1 - rent;
 
-      layer.bindPopup(`
-        <div class="popuptext">
-          <h2 class="popheader big">`+ feature["properties"]["areaName"] + `</h2>
-          <h2 class="popheader">`+ feature["properties"]["percentRenterDisplay"] +`% renters</h2>
-          <p class="total">Total population: `+ feature["properties"]["totalPop"] +`</p>
-          <p><span class="block block-rent">&#x25A0 </span>Renter population: `+ feature["properties"]["renterPop"] +`</p>
-          <p><span class="block block-own">&#x25A0 </span>Owner population: `+ feature["properties"]["ownerPop"] +`</p>
-        </div>
-        <div class="bar-container">
-          <div class="bar">
-            <div class="bar--renter" title="` + (rent*100).toFixed(1).toString() +`%" style="width:`+ (rent*100).toString() +`%"></div>
-            <div class="bar--owner" title="`+ (own*100).toFixed(1).toString() + `%" style="width:`+ (own*100).toString() +`%"></div>
-          </div>
-        </div>
-      `);
+    var popupContent = `<div class="popuptext">
+                          <h2 class="popheader big">`+ feature["properties"]["areaName"] + `</h2>
+                          <p class="popheader renter-pop">` + (rent*100).toFixed(1) + `% renters </p>
+                          <div class="bar-container">
+                            <div class="bar rent">
+                              <div class="bar--renter" style="width:`+ (rent*100).toString() +`%"></div>
+                              <div class="renter-pop"><p class="popsmall">` + feature["properties"]["renterPop"] +`</p></div>
+                            </div>
+                          </div>
+                          <p class="popheader">` + (own*100).toFixed(1) + `% owners </p>
+                          <div class="bar-container">
+                            <div class="bar">
+                              <div class="bar--owner" style="width:`+ (own*100).toString() +`%"></div>
+                              <div><p class="popsmall">`+ feature["properties"]["ownerPop"] +`</p></div>
+                            </div>
+                          </div>
+                          <p class="total">Total population: `+ feature["properties"]["totalPop"] +`</p>
+                        </div>`;
+
+    layer.bindPopup(popupContent);
       
     var focused = false;
     var popup = false;
