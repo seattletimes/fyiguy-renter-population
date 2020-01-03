@@ -95,8 +95,8 @@ var getColor = function(d) {
      return value >= 1 ? '#303030': 
         value >= .75 ? '#253494' :
      		value >= .5 ? '#41b6c4' :
-     		value >= .25 ? '#fff780' :
-        value >= .0 ? '#ffffcc' :
+     		value >= .25 ? '#F7D06F' :
+        value >= .0 ? '#FDF5A9' :
                     '#f1f2f2' ;
     } else {
       return "gray"
