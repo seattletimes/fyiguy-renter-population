@@ -93,11 +93,10 @@ var getColor = function(d) {
     }
     if (typeof value != "undefined") {
      return value >= 1 ? '#303030': 
-        value >= .8 ? '#253494' :
-     		value >= .6 ? '#2c7fb8' :
-     		value >= .4 ? '#41b6c4' :
-        value >= .2 ? '#a1dab4' :
-        value >= 0 ? '#ffffcc' :
+        value >= .75 ? '#253494' :
+     		value >= .5 ? '#41b6c4' :
+     		value >= .25 ? '#fff780' :
+        value >= .0 ? '#ffffcc' :
                     '#f1f2f2' ;
     } else {
       return "gray"
