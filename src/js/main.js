@@ -1,6 +1,6 @@
 //load our custom elements
 require("component-leaflet-map");
-// require("component-responsive-frame");
+require("component-responsive-frame");
 
 
 //get access to Leaflet and the map
