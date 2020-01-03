@@ -11,7 +11,12 @@
   },
   "title": "FYI Guy renter percentage map ",
   "description": "Map of renters vs homeowner by census tract",
+  "author": "",
   "url": "https://projects.seattletimes.com/2020/local/fyiguy-renter-population",
   "slug": "",
-  "tags": []
+  "tags": [],
+  "sheets": [],
+  "docs": [],
+  "embedded": true,
+  "production": true
 }
